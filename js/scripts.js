@@ -112,7 +112,7 @@ function generateCard(thumb) {
       ${user.location.street.replace(/\b\w/g, l => l.toUpperCase())}, ${user.location.state.replace(/\b\w/g, l => l.toUpperCase())} ${user.location.postcode}
     </span>
     <span>
-      Birthday: ${user.dob.date.slice(8,10)}/${user.dob.date.slice(5,7)}/${user.dob.date.slice(0,4)}
+      Birthday: ${parseInt(user.dob.date.slice(5,7), 10)}/${parseInt(user.dob.date.slice(8,10),10)}/${user.dob.date.slice(0,4)}
     </span>
   </div>
   `;

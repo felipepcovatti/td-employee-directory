@@ -70,17 +70,12 @@ function generateThumbs(arrayOfUsers) {
   }
 }
 
-function barGap(el) {
-    el.style.width = '100%';
-    el.style.overflowY = 'scroll';
-    const withBar = el.offsetWidth;
-    el.style.overflowY = 'hidden';
-    el.style.width = withBar + 'px';
-}
-
-function restoreBar(el) {
-  el.style.overflowY = 'scroll';
-  el.style.width = '100%';
+function barGap() {
+    htmlTag.style.width = '100%';
+    htmlTag.style.overflowY = 'scroll';
+    const withBar = htmlTag.offsetWidth;
+    htmlTag.style.overflowY = 'hidden';
+    htmlTag.style.width = withBar + 'px';
 }
 
 function showContent() {
@@ -140,16 +135,19 @@ function openCard(e) {
     })();
     overlay.style.display = 'block';
     generateCard(clickedThumb);
-    barGap(htmlTag);
+    barGap();
     document.addEventListener('keyup', keysNav);
+    window.addEventListener('resize', barGap);
   }
 }
 
 function closeCard() {
   details.innerHTML = '';
   overlay.style.display = 'none';
-  restoreBar(htmlTag);
+  htmlTag.style.overflowY = 'scroll';
+  htmlTag.style.width = '100%';
   document.removeEventListener('keyup', keysNav);
+  window.removeEventListener('resize', barGap);
 }
 
 function changeCard(next = true) {
@@ -203,5 +201,4 @@ overlay.addEventListener('click', (e)=>{
 
 window.addEventListener('resize', ()=>{
   adjustCardThumb();
-  barGap(htmlTag);
 });

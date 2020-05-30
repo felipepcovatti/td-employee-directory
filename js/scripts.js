@@ -104,7 +104,7 @@ function generateCard(thumb) {
       ${user.cell}
     </span>
     <span>
-      ${user.location.street.replace(/\b\w/g, l => l.toUpperCase())}, ${user.location.state.replace(/\b\w/g, l => l.toUpperCase())} ${user.location.postcode}
+      ${user.location.street.number}, ${user.location.street.name}, ${user.location.state.replace(/\b\w/g, l => l.toUpperCase())} ${user.location.postcode}
     </span>
     <span>
       Birthday: ${parseInt(user.dob.date.slice(5, 7), 10)}/${parseInt(user.dob.date.slice(8, 10), 10)}/${user.dob.date.slice(0, 4)}

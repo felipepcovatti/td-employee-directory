@@ -71,11 +71,11 @@ function generateThumbs(arrayOfUsers) {
 }
 
 function barGap() {
-    htmlTag.style.width = '100%';
-    htmlTag.style.overflowY = 'scroll';
-    const withBar = htmlTag.offsetWidth;
-    htmlTag.style.overflowY = 'hidden';
-    htmlTag.style.width = withBar + 'px';
+  htmlTag.style.width = '100%';
+  htmlTag.style.overflowY = 'scroll';
+  const withBar = htmlTag.offsetWidth;
+  htmlTag.style.overflowY = 'hidden';
+  htmlTag.style.width = withBar + 'px';
 }
 
 function showContent() {
@@ -107,19 +107,19 @@ function generateCard(thumb) {
       ${user.location.street.replace(/\b\w/g, l => l.toUpperCase())}, ${user.location.state.replace(/\b\w/g, l => l.toUpperCase())} ${user.location.postcode}
     </span>
     <span>
-      Birthday: ${parseInt(user.dob.date.slice(5,7), 10)}/${parseInt(user.dob.date.slice(8,10),10)}/${user.dob.date.slice(0,4)}
+      Birthday: ${parseInt(user.dob.date.slice(5, 7), 10)}/${parseInt(user.dob.date.slice(8, 10), 10)}/${user.dob.date.slice(0, 4)}
     </span>
   </div>
   `;
   details.dataset.index = index;
 
-  if(thumb.nextElementSibling && thumb.nextElementSibling.className != 'hidden') {
+  if (thumb.nextElementSibling && thumb.nextElementSibling.className != 'hidden') {
     next.style.display = 'block';
   } else {
     next.style.display = 'none';
   }
 
-  if(thumb.previousElementSibling) {
+  if (thumb.previousElementSibling) {
     prev.style.display = 'block';
   } else {
     prev.style.display = 'none';
@@ -159,10 +159,10 @@ function changeCard(next = true) {
 function keysNav(e) {
   switch (e.keyCode) {
     case 39:
-      if(next.style.display == 'block') changeCard();
+      if (next.style.display == 'block') changeCard();
       break;
     case 37:
-      if(prev.style.display == 'block') changeCard(false);
+      if (prev.style.display == 'block') changeCard(false);
       break;
     case 27:
       closeCard();
@@ -178,19 +178,19 @@ fetch(usersUrl).then(okStatus).then(parseJson).then(handleUsers).catch(handleErr
 table.addEventListener('click', openCard);
 
 search.addEventListener('input', e => {
-    const filteredUsersArr = fullUsersArr.filter(
-      (user)=> {
-          const filter = search.value.toUpperCase();
-          const name = (user.name.first + ' ' + user.name.last).toUpperCase();
-          const username = user.login.username.toUpperCase();
-          return name.startsWith(filter) || username.startsWith(filter);
-      }
-    );
-    generateThumbs(filteredUsersArr);
+  const filteredUsersArr = fullUsersArr.filter(
+    (user) => {
+      const filter = search.value.toUpperCase();
+      const name = (user.name.first + ' ' + user.name.last).toUpperCase();
+      const username = user.login.username.toUpperCase();
+      return name.startsWith(filter) || username.startsWith(filter);
+    }
+  );
+  generateThumbs(filteredUsersArr);
 });
 
-overlay.addEventListener('click', (e)=>{
-  if(e.target.className == 'close' || e.target == overlay) {
+overlay.addEventListener('click', (e) => {
+  if (e.target.className == 'close' || e.target == overlay) {
     closeCard();
   } else if (e.target == next) {
     changeCard();
@@ -199,6 +199,6 @@ overlay.addEventListener('click', (e)=>{
   }
 });
 
-window.addEventListener('resize', ()=>{
+window.addEventListener('resize', () => {
   adjustCardThumb();
 });
